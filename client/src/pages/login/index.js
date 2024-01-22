@@ -2,11 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import {useLocation} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
+    // const location=useLocation();
+    // const _id=location.state.id;
     const [data, setData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
-
+    const navigate = useNavigate();
     const handleChange = ({ currentTarget: input }) => {
         setData({ ...data, [input.name]: input.value });
     };
@@ -17,7 +21,9 @@ const Login = () => {
             const url = "http://localhost:5000/api/auth";
             const { data: res } = await axios.post(url, data);
             localStorage.setItem("token", res.data);
-            window.location = "/admin";
+            sessionStorage.setItem('userId', res.userId);
+            window.location = "/student";
+            // navigate('/student',{replace: true, state: { id: _id }});
         } catch (error) {
             if (
                 error.response &&

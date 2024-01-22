@@ -81,6 +81,7 @@ function App() {
     else return HomeRoutes();
   };
 
+
   return (
     <BrowserRouter>
       {renderRoutes()}

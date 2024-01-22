@@ -6,12 +6,13 @@ import styles from "./styles.module.css";
 
 const Signup = () => {
     const [data, setData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        class: "", // add this
+        firstname: "",
+        lastname: "",
+        classy: "", // add this
         year: "", // add this
+        email: "",
+        contact: "",
+        password: "",
     });
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -23,10 +24,11 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "http://localhost:5000/api/users";
+            const url = "http://localhost:5000/api/users/adduser";
             const { data: res } = await axios.post(url, data);
-            navigate("/login");
-            console.log(res.message);
+            console.log("Done");
+            navigate("/login",{replace: true, state: { id: res.userId }});
+            console.log(res.userId);
         } catch (error) {
             if (
                 error.response &&
@@ -55,27 +57,27 @@ const Signup = () => {
                         <input
                             type="text"
                             placeholder="First Name"
-                            name="firstName"
+                            name="firstname"
                             onChange={handleChange}
-                            value={data.firstName}
+                            value={data.firstname}
                             required
                             className={styles.input}
                         />
                         <input
                             type="text"
                             placeholder="Last Name"
-                            name="lastName"
+                            name="lastname"
                             onChange={handleChange}
-                            value={data.lastName}
+                            value={data.lastname}
                             required
                             className={styles.input}
                         />
                         <input
                             type="text"
                             placeholder="Class"
-                            name="class"
+                            name="classy"
                             onChange={handleChange}
-                            value={data.class}
+                            value={data.classy}
                             required
                             className={styles.input}
                         />
@@ -94,6 +96,15 @@ const Signup = () => {
                             name="email"
                             onChange={handleChange}
                             value={data.email}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Contact"
+                            name="contact"
+                            onChange={handleChange}
+                            value={data.contact}
                             required
                             className={styles.input}
                         />

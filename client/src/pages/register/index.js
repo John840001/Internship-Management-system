@@ -10,6 +10,7 @@ const Signup = () => {
         lastName: "",
         email: "",
         password: "",
+        contact:"",
         class: "", // add this
         year: "", // add this
     });
@@ -85,6 +86,15 @@ const Signup = () => {
                             name="year"
                             onChange={handleChange}
                             value={data.year}
+                            required
+                            className={styles.input}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Contact"
+                            name="contact"
+                            onChange={handleChange}
+                            value={data.contact}
                             required
                             className={styles.input}
                         />

@@ -7,6 +7,7 @@ import AdminHome from "./pages/Admin";
 import AdminStudentData from "./pages/Admin/studentData";
 import AdminDelete from "./pages/Admin/Delete";
 import AdminTeacherData from "./pages/Admin/teacherData";
+import AdminCreate from "./pages/Admin/Create";
 
 import StudentHome from "./pages/Student";
 import StudentReplace from "./pages/Student/Replace";
@@ -21,19 +22,19 @@ import TeacherPaper from "./pages/Teacher/teacherPaper";
 import TeacherInternship from "./pages/Teacher/Internship";
 import TeacherAchievement from "./pages/Teacher/achievements";
 
+// import NavBar from "./components/navBar";
 import Footer from "./components/footer";
 
-function App() {
-  const role = localStorage.getItem("role");
 
+function App() {
   const AdminRoutes = () => {
     return (
       <Routes>
-        <Route path="/" element={<AdminHome />} />
-        <Route path="/student-data" element={<AdminStudentData />} />
-        <Route path="/delete" element={<AdminDelete />} />
-        <Route path="/Teacher-data" element={<AdminTeacherData />} />
-        <Route path="/create" element={<Register />} />
+        <Route path="/admin" element={<AdminHome />} />
+        <Route path="/admin/student-data" element={<AdminStudentData />} />
+        <Route path="/admin/delete" element={<AdminDelete />} />
+        <Route path="/admin/Teacher-data" element={<AdminTeacherData />} />
+        <Route path="/admin/create" element={<AdminCreate />} />
       </Routes>
     );
   };
@@ -41,11 +42,11 @@ function App() {
   const StudentRoutes = () => {
     return (
       <Routes>
-        <Route path="/" element={<StudentHome />} />
-        <Route path="/replace" element={<StudentReplace />} />
-        <Route path="/delete" element={<StudentDelete />} />
-        <Route path="/update" element={<StudentUpdate />} />
-        <Route path="/create" element={<EditProfile />} />
+        <Route path="/student" element={<StudentHome />} />
+        <Route path="/student/replace" element={<StudentReplace />} />
+        <Route path="/student/delete" element={<StudentDelete />} />
+        <Route path="/student/update" element={<StudentUpdate />} />
+        <Route path="/student/create" element={<EditProfile />} />
       </Routes>
     );
   };
@@ -53,15 +54,12 @@ function App() {
   const TeacherRoutes = () => {
     return (
       <Routes>
-        <Route path="/" element={<TeacherHome />} />
-        <Route path="/results" element={<TeacherResults />} />
-        <Route
-          path="/teacherCertification"
-          element={<TeacherCertification />}
-        />
-        <Route path="/teacherPaper" element={<TeacherPaper />} />
-        <Route path="/internship" element={<TeacherInternship />} />
-        <Route path="/achievements" element={<TeacherAchievement />} />
+        <Route path="/teacher" element={<TeacherHome />} />
+        <Route path="/teacher/results" element={<TeacherResults />} />
+        <Route path="/teacher/teacherCertification" element={<TeacherCertification />} />
+        <Route path="/teacher/teacherPaper" element={<TeacherPaper />} />
+        <Route path="/teacher/internship" element={<TeacherInternship />} />
+        <Route path="/teacher/achievements" element={<TeacherAchievement/>} />
       </Routes>
     );
   };
@@ -69,16 +67,17 @@ function App() {
   const HomeRoutes = () => {
     return (
       <Routes>
-        <Route path="/" element={<Login />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     );
   };
 
   const renderRoutes = () => {
-    if (role === "admin") return AdminRoutes();
-    else if (role === "student") return StudentRoutes();
-    else if (role === "teacher") return TeacherRoutes();
+    if (window.location.href.includes("/admin")) return AdminRoutes();
+    else if (window.location.href.includes("/student")) return StudentRoutes();
+    else if (window.location.href.includes("/teacher")) return TeacherRoutes();
     else return HomeRoutes();
   };
 

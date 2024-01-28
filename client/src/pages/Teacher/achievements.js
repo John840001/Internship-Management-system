@@ -1,65 +1,52 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import TeacherNavbar from "../../components/navBar/teacherNavbar";
-import axios from "axios";
 
 const TeacherAchievement = () => {
-    // const studentsData = [
-    //     {
-    //         name: "John Doe",
-    //         rollNo: 1,
-    //         achievements: [
-    //             { name: "Achievement 1" },
-    //             { name: "Achievement 2" },
-    //         ],
-    //         level: "National",
-    //     },
-    //     {
-    //         name: "Jane Doe",
-    //         rollNo: 2,
-    //         achievements: [
-    //             { name: "Achievement 3" },
-    //             { name: "Achievement 4" },
-    //         ],
-    //         level: "Inter-National",
-    //     },
-    //     // Add more student data here
-    // ];
+    const studentsData = [
+        {
+            name: "John Doe",
+            rollNo: 1,
+            achievements: [
+                { name: "Achievement 1" },
+                { name: "Achievement 2" },
+            ],
+            level: "National",
+        },
+        {
+            name: "Jane Doe",
+            rollNo: 2,
+            achievements: [
+                { name: "Achievement 3" },
+                { name: "Achievement 4" },
+            ],
+            level: "Inter-National",
+        },
+        // Add more student data here
+    ];
 
-    const [studentsData, setStudentsData] = useState([]);
     const [filter, setFilter] = useState("all");
     const [searchText, setSearchText] = useState(""); // State to store the search text for achievements and level
 
-    useEffect(() => {
-        const getData = async () => {
-          try {
-            const response = await axios.get("http://localhost:5000/api/data");
-            // const data = response.data.internship
-            setStudentsData(response.data.achievement);
-          } catch (error) {
-            console.error("Error fetching data:", error);
-          }
-        };
-    
-        getData();
-      }, []); 
-    
     let filteredStudents = [...studentsData]; // Create a copy of the original array to avoid mutating it
 
     // Filter students based on search text for achievements and level
     if (searchText) {
         filteredStudents = filteredStudents.filter((student) =>
-            student.achievement.some(
+            student.achievements.some(
                 (achievement) =>
-                    achievement.toLowerCase().includes(searchText.toLowerCase())
+                    achievement.name.toLowerCase().includes(searchText.toLowerCase())
             ) ||
             student.level.toLowerCase().includes(searchText.toLowerCase())
         );
     }
 
     return (
-        <div className="min-h-screen">
+        <div>
             <TeacherNavbar />
+            <h1 className="text-7xl font-bold underline">Teacher Home</h1>
+            <Link to="/">Home</Link>
+
             <div className="mt-8">
                 <input
                     type="text"
@@ -82,18 +69,18 @@ const TeacherAchievement = () => {
                     <tbody>
                         {filteredStudents.map((student, index) => (
                             <tr key={index}>
-                                <td className="border px-4 py-2 text-center">{student.name}</td>
-                                <td className="border px-4 py-2 text-center">{student.rollNumber}</td>
-                                <td className="border px-4 py-2 text-center">
+                                <td className="border px-4 py-2">{student.name}</td>
+                                <td className="border px-4 py-2">{student.rollNo}</td>
+                                <td className="border px-4 py-2">
                                     <ul>
-                                        {student.achievement.map((achievement, achievementIndex) => (
+                                        {student.achievements.map((achievement, achievementIndex) => (
                                             <li key={achievementIndex}>
-                                                {achievement}
+                                                {achievement.name}
                                             </li>
                                         ))}
                                     </ul>
                                 </td>
-                                <td className="border px-4 py-2 text-center">{student.level}</td>
+                                <td className="border px-4 py-2">{student.level}</td>
                             </tr>
                         ))}
                     </tbody>

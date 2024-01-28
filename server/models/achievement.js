@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const achievementSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  achievement: [{ type: String }],
+  achievement: { type: String,},
   year: { type: String, required: true },
-  level: { type: String },
+  level: { type: String},
   rollNumber: { type: Number, required: true },
 });
 

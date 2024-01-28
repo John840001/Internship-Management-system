@@ -1,49 +1,82 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TeacherNavbar from "../../components/navBar/teacherNavbar";
-import axios from "axios";
+
+// Dummy data for student internships
+const studentInternships = [
+  {
+    id: 1,
+    rollNumber: "S001",
+    name: "John Doe",
+    company: "ABC Inc.",
+    time: "Summer 2023",
+  },
+  {
+    id: 2,
+    rollNumber: "S002",
+    name: "Jane Smith",
+    company: "XYZ Corp.",
+    time: "Fall 2023",
+  },
+  {
+    id: 3,
+    rollNumber: "S003",
+    name: "Bob Johnson",
+    company: "ABC Inc.",
+    time: "Winter 2024",
+  },
+  {
+    id: 4,
+    rollNumber: "S004",
+    name: "Alice Williams",
+    company: "XYZ Corp.",
+    time: "Spring 2024",
+  },
+  {
+    id: 5,
+    rollNumber: "S005",
+    name: "David Brown",
+    company: "ABC Inc.",
+    time: "Summer 2023",
+  },
+  {
+    id: 6,
+    rollNumber: "S006",
+    name: "Emily Davis",
+    company: "XYZ Corp.",
+    time: "Fall 2023",
+  },
+  {
+    id: 7,
+    rollNumber: "S007",
+    name: "Michael Johnson",
+    company: "ABC Inc.",
+    time: "Winter 2024",
+  },
+];
 
 const TeacherInternship = () => {
-  const [studentInternships, setStudentInternships] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterCriteria, setFilterCriteria] = useState("All");
-  const [filteredInternships, setFilteredInternships] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/data");
-        // const data = response.data.internship
-        setStudentInternships(response.data.internship);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    getData();
-  }, []); // Empty dependency array to fetch data only once on component mount
-
-  console.log(studentInternships);
-  useEffect(() => {
-    filterInternships(searchText, filterCriteria);
-  }, [searchText, filterCriteria, studentInternships]);
+  const [filteredInternships, setFilteredInternships] =
+    useState(studentInternships);
 
   const handleSearch = (text) => {
     setSearchText(text);
+    filterInternships(text, filterCriteria);
   };
 
   const handleFilterChange = (criteria) => {
     setFilterCriteria(criteria);
+    filterInternships(searchText, criteria);
   };
 
   const filterInternships = (text, criteria) => {
     const filteredData = studentInternships.filter((internship) => {
-      const rollNumberString = String(internship.rollNumber);
-
       const matchesSearchText =
-        rollNumberString.toLowerCase().includes(text.toLowerCase()) ||
+        internship.rollNumber.toLowerCase().includes(text.toLowerCase()) ||
         internship.name.toLowerCase().includes(text.toLowerCase()) ||
         internship.company.toLowerCase().includes(text.toLowerCase()) ||
-        internship.duration.toLowerCase().includes(text.toLowerCase());
+        internship.time.toLowerCase().includes(text.toLowerCase());
 
       if (criteria === "All") {
         return matchesSearchText;
@@ -55,7 +88,7 @@ const TeacherInternship = () => {
       } else if (criteria === "Time") {
         return (
           matchesSearchText &&
-          internship.duration.toLowerCase().includes(text.toLowerCase())
+          internship.time.toLowerCase().includes(text.toLowerCase())
         );
       }
 
@@ -66,8 +99,7 @@ const TeacherInternship = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      {" "}
+    <div>
       <TeacherNavbar />
       <h1 className="text-4xl font-bold my-4 text-center">
         Student Internships
@@ -108,14 +140,11 @@ const TeacherInternship = () => {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Time of Internship
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Role
-            </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {filteredInternships.map((internship) => (
-            <tr key={internship._id}>
+            <tr key={internship.id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 {internship.rollNumber}
               </td>
@@ -123,10 +152,7 @@ const TeacherInternship = () => {
               <td className="px-6 py-4 whitespace-nowrap">
                 {internship.company}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                {internship.duration}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{internship.role}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{internship.time}</td>
             </tr>
           ))}
         </tbody>
@@ -134,5 +160,6 @@ const TeacherInternship = () => {
     </div>
   );
 };
+
 
 export default TeacherInternship;

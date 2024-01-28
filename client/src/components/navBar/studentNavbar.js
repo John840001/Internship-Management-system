@@ -33,15 +33,6 @@ const StudentNavbar = () => {
               Student Management System
             </Link>
           </div>
-          <div>
-            <button
-            onClick={()=>{
-              localStorage.clear();
-              window.location = "/";
-            }}>
-              Logout
-            </button>
-          </div>
         </div>
       </div>
     </nav>

@@ -1,7 +1,9 @@
-import React from "react";
+
+import React, { useState ,useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminNavBar from "../../components/navBar/adminNavbar";
 import Footer from "../../components/footer";
+import axios from "axios";
 
 const studentData = [
     { name: "John Doe", rollNo: "2021001", yearOfStudy: "3rd Year", branch: "Computer Science" },
@@ -10,6 +12,24 @@ const studentData = [
 ];
 
 const AdminStudentData = () => {
+     
+    const [studentsData, setStudentsData] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+          try {
+            const response = await axios.get("http://localhost:5000/api/users");
+            // const data = response.data.internship
+            setStudentsData(response.data.achievement);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        };
+    
+        getData();
+      }, []);
+
+
     return (
        <div>
          <AdminNavBar/> 

@@ -168,4 +168,5 @@ app.listen(PORT, () => {
 
 // Function to check if two objects are equal
 function isEqual(obj1, obj2) {
-  return JSON.stringify(obj1) === JSON.stringify(
+  return JSON.stringify(obj1) === JSON.stringify()
+  }

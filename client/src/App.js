@@ -13,6 +13,7 @@ import StudentReplace from "./pages/Student/Replace";
 import StudentDelete from "./pages/Student/Delete";
 import StudentUpdate from "./pages/Student/Update";
 import EditProfile from "./pages/Student/Create";
+import StudentData from "./pages/Student/viewData";
 
 import TeacherHome from "./pages/Teacher";
 import TeacherResults from "./pages/Teacher/Results";
@@ -44,8 +45,9 @@ function App() {
         <Route path="/" element={<StudentHome />} />
         <Route path="/replace" element={<StudentReplace />} />
         <Route path="/delete" element={<StudentDelete />} />
-        <Route path="/update" element={<StudentUpdate />} />
-        <Route path="/create" element={<EditProfile />} />
+        <Route path="/student/Upload" element={<StudentUpdate />} />
+        <Route path="/student/Create" element={<EditProfile />} />
+        <Route path="/student" element={<StudentData />} />
       </Routes>
     );
   };

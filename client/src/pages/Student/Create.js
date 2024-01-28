@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const EditProfile = () => {
     const [name, setName] = useState('');
     const [rollNumber, setRollNumber] = useState('');
+    const [email, setemail] = useState('');
+    const [Contact, setContact] = useState('');
     const [password, setPassword] = useState('');
     const [internshipName, setInternshipName] = useState('');
     const [internshipTime, setInternshipTime] = useState('');
@@ -49,70 +51,33 @@ const EditProfile = () => {
                 </div>
                 
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="internshipName">
-                        Internship Name
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rollNumber">
+                        Email
                     </label>
                     <input 
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="internshipName" 
+                        id="email" 
                         type="text" 
-                        placeholder="Internship Name" 
-                        value={internshipName} 
-                        onChange={(e) => setInternshipName(e.target.value)}
+                        placeholder="Email" 
+                        value={email} 
+                        onChange={(e) => setemail(e.target.value)}
                     />
                 </div>
+
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="internshipTime">
-                        Internship Time
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rollNumber">
+                        Contact
                     </label>
                     <input 
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="internshipTime" 
+                        id="Contact" 
                         type="text" 
-                        placeholder="Internship Time" 
-                        value={internshipTime} 
-                        onChange={(e) => setInternshipTime(e.target.value)}
+                        placeholder="Roll Number" 
+                        value={Contact} 
+                        onChange={(e) => setContact(e.target.value)}
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="achievementDetails">
-                        Achievement Details
-                    </label>
-                    <input 
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="achievementDetails" 
-                        type="text" 
-                        placeholder="Achievement Details" 
-                        value={achievementDetails} 
-                        onChange={(e) => setAchievementDetails(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="achievementLevel">
-                        Achievement Level
-                    </label>
-                    <input 
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="achievementLevel" 
-                        type="text" 
-                        placeholder="Achievement Level" 
-                        value={achievementLevel} 
-                        onChange={(e) => setAchievementLevel(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
-                        Date
-                    </label>
-                    <input 
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="date" 
-                        type="date" 
-                        placeholder="Date" 
-                        
-                        
-                    />
-                </div>
+                
                 <div className="flex items-center justify-between">
                     <button 
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

@@ -9,20 +9,20 @@ const AdminNavBar = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
-                  to="/admin/student-data"
+                  to="/student-data"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Student Data
                 </Link>
 
                 <Link
-                  to="/admin/teacher-data"
+                  to="/teacher-data"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Teacher Data
                 </Link>
                 <Link
-                  to="/admin/manage-users"
+                  to="/manage-users"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Manage Users
@@ -32,11 +32,21 @@ const AdminNavBar = () => {
           </div>
           <div>
             <Link
-              to="/admin"
+              to="/"
               className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Student Management System
             </Link>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location = "/";
+              }}
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>

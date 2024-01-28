@@ -9,56 +9,66 @@ const TeacherNavbar = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
-                  to="/teacher"
+                  to="/"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Profile
                 </Link>
 
                 <Link
-                  to="/teacher/internship"
+                  to="/internship"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Internship Data
                 </Link>
 
                 <Link
-                  to="/teacher/Results"
+                  to="/Results"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Results Data
                 </Link>
 
                 <Link
-                  to="/teacher/teacherCertification"
+                  to="/teacherCertification"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Certifications
                 </Link>
 
                 <Link
-                  to="/teacher/teacherPaper"
+                  to="/teacherPaper"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Paper Publications  
+                  Paper Publications
                 </Link>
 
                 <Link
-                  to="/teacher/achievements"
+                  to="/achievements"
                   className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Achievements  
+                  Achievements
                 </Link>
               </div>
             </div>
           </div>
           <div>
             <Link
-              to="/teacher"
+              to="/"
               className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Student Management System
             </Link>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location = "/";
+              }}
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>
